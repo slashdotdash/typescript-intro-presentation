@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>TypeScript: JavaScript for tools</title>
+  
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" href="deck.js/core/deck.core.css">
+  
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">
+  <link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
+  <link rel="stylesheet" href="deck.js/extensions/scale/deck.scale.css">
+
+  <link rel="stylesheet" href="assets/typescript.css">
+  
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
+  
+  <!-- Required Modernizr file -->
+  <script src="deck.js/modernizr.custom.js"></script>
+</head>
+<body class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+
+<section class="slide" id="intro">
+  <hgroup>
+    <h1>TypeScript</h1>
+    <h2>JavaScript for tools</h2>
+  </hgroup>
+</section>
+
+<section class="slide"> 
+  <blockquote cite="http://www.typescriptlang.org/">
+    <p>TypeScript is a language for application-scale JavaScript development.</p><br />
+    <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p><br />
+    <p>Any browser. Any host. Any OS. Open Source.</p>
+    <p><cite>typescriptlang.org</cite></p>
+  </blockquote>
+</section>
+
+<section class="slide"> 
+  <h2>Design Goals</h2>
+  <ul>    
+    <li>Extend JavaScript for writing large apps (superset of JavaScript).</li>
+    <li>Adds support for classes, interfaces &amp; modules.</li>
+    <li>Development tooling support</li>
+    <li>Compiled JavaScript runs in any browser (or Node.js).</li>
+    <li>Since JavaScript code is TypeScript code you can start off with JavaScript and just add some types here and there.</li>   
+  </ul>
+</section>
+
+<section class="slide">
+  <blockquote>
+    <p>What TypeScript does is, it basically formalizes a static type system that describes JavaScript's dynamic types, but it describes them at development time.</p>
+    <p><cite>Anders Hejlsberg</cite></p>
+  </blockquote>
+</section>
+
+<section class="slide"> 
+  <h2>Tooling Support</h2>
+  <ul>    
+    <li>Static type checking.</li>
+    <li>Strong type inference.</li>
+    <li>Symbol-based navigation.</li>
+    <li>Statement completion / intellisense.</li>
+    <li>Code refactoring.</li>
+  </ul>
+  <p>Currently supported in <strong>Visual Studio 2012</strong> 
+  and Microsoft's <strong>Monaco</strong> web editor (TypeScript.org playground).</p>
+  <p>Also, text editor support for Sublime Text, EMACS, Vim.</p>
+</section>
+
+<section class="slide">
+  <h2>Installation</h2>
+  <h3>Visual Studio 2012</h3>
+  <p>Plugin <a href="http://www.microsoft.com/en-us/download/details.aspx?id=34790">available to download</a>.</p>
+  
+  <h3>Node.js</h3>  
+  <pre><code>npm install -g typescript</code></pre>
+  
+  <p>Provides a command-line compiler.</p>
+  <pre><code>tsc source.tc</code></pre>
+</section>
+
+<section class="slide"> 
+  <h2>File Extensions</h2>
+  <ul>
+    <li><code>.ts</code> is the extension for source files.</li>
+    <li><code>.d.ts</code> is the extension for declaration files.</li>
+  </ul>
+</section>
+
+<section class="slide">  
+  <h2>Declaration Source Files</h2>
+  <ul>
+    <li>Provide type definitions, separate from the corresponding source.</li>
+    <li>Analogous to header files in C/C++..</li>
+    <li>Can be used to describe the exported virtual TypeScript types of a JavaScript library or module when a third-party developer consumes it from TypeScript.</li>
+    <li>Gives type safety, intellisense and compile errors.</li>
+    <li>DOM and jQuery provided with TypeScript.</li>
+    <li>Write your own for any existing JavaScript library / code.</li>
+  </ul>
+</section>
+
+<section class="slide"> 
+  <h2>Type Annotations</h2>
+  <ul>
+    <li>Optional static typing.</li>
+    <li>Lightweight way to record the intended contract of a function or variable.</li>
+    <li>Applied using a <em>post-fix</em> syntax.</li>
+    <li>Ideally suited to when the <code>: T</code> is optional.</li>
+  </ul>
+
+  <pre><code>function add(a: number, b: number) {
+    return a + b;
+}</pre></code>
+
+  <ul>
+    <li>Return type of the function can be inferred.</li>
+    <li>Supports optional types via <code>?</code></li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Types</h2>
+  <ul>
+    <li>All types are subtypes of a single top type called the <code>Any</code> type.</li>
+    <li>Represents any JavaScript value with no constraints.</li>
+  </ul>
+
+  <h3>Primitive Types</h3>
+  <ul>
+    <li><code>number</code></li>
+    <li><code>bool</code></li>
+    <li><code>string</code></li>
+    <li><code>null</code></li>
+    <li><code>undefined</code></li>    
+  </ul>
+
+  <h3>Object Types</h3>
+  <ul>
+    <li>Class, module, interface and literal types.</li>
+    <li>Supports typed arrays: <code>var reports: Employee[] = [];</code></li>
+  </ul>  
+</section>
+
+<section class="slide"> 
+  <h2>Arrow Function Expressions</h2>
+  <ul>
+    <li>New feature planned for ECMAScript 6.</li>
+    <li>Compact form of function expressions that omit the function keyword.</li>
+    <li>Similar to lambda expressions in C#.</li>
+    <li>Lexical scoping of <code>this</code>.</li>    
+  </ul>
+
+  <div class="slide">
+    <pre><code>var messenger = { 
+  message: "Hello World", 
+  start: function() { 
+    setTimeout(() => { alert(this.message); }, 3000); 
+  } 
+}; 
+messenger.start();</pre></code>
+  </div>
+  
+  <div class="slide">
+    <pre><code>window.onmousemove = e => {
+  console.log('Mouse at ('+e.screenX+','+e.screenY+')');
+}</pre></code>
+  </div>
+</section>
+
+<section class="slide"> 
+  <h2>Classes</h2>
+  <ul>    
+    <li>Support for ECMAScript 6 alike classes.</li>
+    <li>Methods are translated into JavaScript prototype chain - more memory efficient than using closures with anonymous functions.</li>
+    <li><code>public</code> or <code>private</code> member accessibility.</li>
+    <li>Parameter property declarations via constructor.</li>
+    <li>Supports single-parent inheritance.</li>
+    <li>Derived classes make use of <code>super</code> calls to parent.</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Classes</h2>
+  <pre><code class="typescript">class Animal {
+    constructor(public name) { }
+    move(meters) {
+        alert(this.name + " moved " + meters + "m.");
+    }
+}
+
+class Snake extends Animal {
+  move() {
+    alert("Slithering...");
+    super.move(5);
+  }
+}
+
+class Horse extends Animal {
+  move() {
+    alert("Galloping...");
+    super.move(45);
+  }
+}</pre></code>
+</section>
+
+<section class="slide"> 
+  <h2>Interfaces</h2>
+  <ul>    
+    <li>Designed for development tooling support only.</li>
+    <li>No output when compiled to JavaScript.</li>
+    <li>Structural type system - interfaces are automatically implemented by any object/prototype that complies structurally.</li>
+    <li>Supports overload by parameter signature.</li>
+    <li>Open for extension (may declare across multiple files).</li>
+    <li>Supports implementing multiple interfaces.</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Interfaces</h2>
+  <pre><code class="typescript">interface Drivable {
+    start(): void;
+    drive(distance: number): void;
+    getPosition(): number;
+}
+
+class Car implements Drivable {
+  private isRunning: bool = false;
+  private distanceFromStart: number;
+  
+  public start(): void {
+    this.isRunning = true;
+  }
+  public drive(distance: number): void {
+    if (this.isRunning) {
+      this.distanceFromStart += distance;           
+    }        
+  }
+  public getPosition(): number {
+    return this.distanceFromStart;
+  }
+}</pre></code>
+<p><strong>Note</strong> interfaces have no <em>run-time</em> representation - they are purely a <em>compile-time</em> construct.</p>
+</section>
+
+<section class="slide">
+  <h2>Structual Types</h2>
+  <pre><code class="typescript">interface Person {
+    firstname: string;
+    lastname: string;
+}
+
+function greeter(person: Person) {
+    return "Hello, " + person.firstname + " " + person.lastname;
+}
+
+var user = {firstname: "Jane", lastname: "User"};
+
+greeter(user);</pre></code>
+  <p><strong>Note</strong> that strutural typing also applies to interface methods.</p>
+</section>
+
+<section class="slide"> 
+  <h2>Modules</h2>
+  <ul>
+    <li>Analagous to .NET namespaces.</li>
+    <li>Prevents global variable naming collisions.</li>
+    <li>Closely aligned with those proposed for ECMAScript 6.</li>
+    <li>Supports code generation targeting CommonJS and AMD module systems.</li>
+    <li>Accessibility for <code>internal</code> and <code>external</code> modules.</li>
+    <li>Allows exposing a <em>public</em> API.</li>
+  </ul>  
+</section>
+
+<section class="slide">
+  <h2>Modules</h2>
+  <pre><code class="typescript">interface IPoint {
+    getDist(): number;
+}
+
+module Shapes {
+  // Class exported for public consumption
+  export class Point implements IPoint {
+      // Constructor
+      constructor (public x: number, public y: number) { }
+
+      // Instance member
+      getDist() { return Math.sqrt(this.x * this.x + this.y * this.y); }
+
+      // Static member
+      static origin = new Point(0, 0);
+  }
+}
+var p: IPoint = new Shapes.Point(3, 4);
+var dist = p.getDist();</pre></code>
+</section>
+
+<section class="slide"> 
+  <h2>Source File Dependencies</h2>
+  <ul>
+    <li>Compiler automatically determines a source file's dependencies.</li>
+    <li>Uses <em>reference comments</em> and <code>import</code> declarations.</li>
+    <li>All references are analysed for their dependencies.</li>
+    <li>Visual Studio uses these references to load all associated source files from a single <code>.ts</code> file.</li>
+  </ul>
+
+  <div class="slide">
+    <h4>Reference comment</h4>
+    <pre><code>/// &lt;reference path="jquery.d.ts"/&gt;</code></pre>
+
+    <h4>Import declaration</h4>
+    <pre><code>import log = module("log"); 
+log.message("hello");</pre></code>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>Source Map Support</h2>
+  <ul>
+    <li>Alleviates the debugging issues that are raised by <em>*-to-JavaScript</em> compilers and JavaScript minifiers.</li>
+    <li>You aren't debugging the code that you wrote.</li>
+    <li>Source maps fixes this; it works like <em>magic</em>!</li>
+    <li>A way to map combined / minified files back to their unbuilt state.</li>
+    <li>TypeScript team have done the hard work for us by providing a Source Map generator in the compiler.</li>
+    <li>Allows debugging and breakpoints from <code>.ts</code> files.</li>
+  </ul>
+
+  <pre><code>tsc -sourcemap example.ts</code></pre>
+
+  <ul>
+    <li>Requires either Chrome Canary or WebKit nightly.</li>
+    <li>Not yet supported by Visual Studio 2012.</li>
+  </ul>
+
+  <h3 class="slide">Demo</h3>
+</section>
+
+<section class="slide">  
+  <h2>Self hosting</h2>
+  <ul>
+    <li>Compiler is written in TypeScript, so can compile itself to JavaScript.</li>
+    <li>Can be hosted in any ECMAScript 3 compatible runtime.</li>
+    <li>Can host the compiler in a web browser by referencing <code>typescript.js</code></li>
+  </ul>
+
+  <div class="slide">
+    <h2>Hosting TypeScript Compiler</h2>
+  
+    <p>1. Create an html file with a reference to <code>typescript.js</code> file.</p>
+    
+    <pre><code>&lt;script type="text/javascript" src="typescript.js"&gt;&lt;/script&gt;</pre></code>
+  </div>
+</section>
+<!-- TODO: Replace  in-place instructions for hosting -->
+<section class="slide">
+  <p>2. Create an output writer</p>
+  <pre><code>var outfile = {
+    source: "",
+    Write: function (s) {
+        this.source += s;
+    },
+    WriteLine: function (s) {
+        this.source += s + "\n";
+    },
+    Close: function () { }
+};</pre></code>
+</section>
+
+<section class="slide">
+  <p>3. Create an instance of the TypeScript compiler</p>
+  <pre><code>var compiler = new TypeScript.TypeScriptCompiler(outfile);</pre></code>
+  <p>... with compilation error handling.</p>
+  <pre><code>compiler.parser.errorRecovery = true;
+compiler.setErrorCallback(function (start, len, message, block) {
+    console.log('Compilation error: ', message, '\n Code block: ', block, ' Start position: ', start, ' Length: ', len);
+});</code></pre>
+</section>
+
+<section class="slide">
+  <p>4. Add compilation source.</p>
+  <pre><code>var src = $('#source').text();
+compiler.addUnit(src, '');</pre></code>
+
+  <p>... and standard lib file.</p>
+  <pre><code>// libfile variable contains packed declaration file lib.d.ts
+compiler.addUnit(libfile, 'lib.d.ts');</pre></code>
+</section>
+
+<section class="slide">
+  <p>5. Compile.</p>
+  <pre><code>compiler.typeCheck();
+
+compiler.emit(false, function createFile(fileName) {
+    console.log(outfile);
+    return outfile;
+});
+
+console.log('compiled: ' + outfile.source);</pre></code>
+
+<h3 class="slide">Demo</h3>
+</section>
+
+<section class="slide"> 
+  <h2>Why use TypeScript?</h2>
+  <ul>
+    <li>Support for ECMAScript 6 constructs (classes, modules) 
+      in today's ECMAScript 3 compatible browsers.</li>   
+    <li>Open Source, under the Apache 2.0 license, and available to download on codeplex.</li>
+    <li>Tooling support, for type safety, inference and refactoring.</li>
+    <li>Static types and compilation helps catch mistakes &amp; bugs earlier.</li> 
+    <li>Structural interfaces &amp; typing.</li>
+    <li>Simplicity of design, self hosting (less than 25k LoC).</li>
+    <li>Works well with existing projects.</li>
+    <li>Compiles to <em>idiomatic</em> JavaScript.</li>    
+    <li>Anders Hejlsburg is involved.</li>
+    <li>Enables programming in the large.</li>    
+  </ul>
+</section>
+
+<section class="slide"> 
+  <h2>Why not?</h2>
+  <ul>
+    <li>Additional <em>compilation</em> step for JavaScript development.</li>
+    <li>Only at version 0.8</li>
+    <li>Limited availability of resources &amp; libraries 
+      (can use any existing JavaScript, albeit with limited type saftey and tooling support).</li>
+    <li>No support for generics (yet, but is defined in spec).</li>
+    <li>All types are nullable.</li>
+    <li>Limited tooling support outside of Visual Studio 2012 or Monaco web editor.</li>    
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Resources</h2>
+  <ul>
+    <li><a href="http://www.typescriptlang.org/">typescriptlang.org</a></li>
+    <li>Watch Anders introduce TypeScript in the <a href="http://channel9.msdn.com/posts/Anders-Hejlsberg-Introducing-TypeScript">Channel 9 videos</a></li>
+    <li><a href="http://go.microsoft.com/fwlink/?LinkId=267238">Read</a> the specification.</li>
+  </ul>
+
+  <h2>Questions...?</h2>
+</section>
+
+<!-- End slides. -->
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.navigation snippet
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a> 
+-->
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+  <span class="deck-status-current"></span>
+  /
+  <span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+  <label for="goto-slide">Go to slide:</label>
+  <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+  <datalist id="goto-datalist"></datalist>
+  <input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- End extension snippets. -->
+
+
+<!-- Required JS files. -->
+<script src="deck.js/jquery-1.7.2.min.js"></script>
+<script src="deck.js/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js/extensions/hash/deck.hash.js"></script>
+<script src="deck.js/extensions/menu/deck.menu.js"></script>
+<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<script src="deck.js/extensions/status/deck.status.js"></script>
+<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js/extensions/scale/deck.scale.js"></script>
+
+<!-- Suport for compiling TypeScript -->
+<script src="assets/typescript.min.js"></script>
+<script src="assets/compiler.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+
+    var compiler = new Compiler();
+
+    $(document).bind('deck.change', function(event, from, to) {
+      var fromSlide = $.deck('getSlide', from);
+
+      var tsCode = $(fromSlide).find('code.typescript');
+      var jsCode = $(fromSlide).find('code.javascript');
+
+      var goingForwards = to > from;
+      var goingBackwards = from > to;
+
+      if (goingBackwards === true && jsCode.length > 0) {
+        // Replace TypeScript with JavaScript source
+        jsCode.remove();
+        tsCode.show();
+
+        $.deck('toggleScale');
+        $.deck('toggleScale');
+
+        event.preventDefault();
+        return false;
+      } else if (goingForwards == true && tsCode.not(':hidden').length > 0) {
+        var src = tsCode.map(function() { 
+          return $(this).text(); 
+        }).get().join('\n');
+        // Conpile TypeScript to JavaScript
+
+        var typescript = compiler.compile(src);
+
+        var copy = tsCode.clone().addClass('javascript').removeClass('typescript').text(typescript);
+        tsCode.parent().append(copy);
+        tsCode.hide();
+
+        $.deck('toggleScale');
+        $.deck('toggleScale');
+
+        event.preventDefault();
+        return false;
+      }
+    });
+  });
+</script>
+</body>
+</html>
