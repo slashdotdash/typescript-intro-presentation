@@ -221,24 +221,9 @@
   box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
-#intro { background-color: #fff; }
-#intro {
+#intro { 
+  background-color: #fff;
   text-align: center;
-}
-#intro > div {
-  padding-top: 24px;
-}
-.csstransforms #intro > div {
-  padding-top: 0;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  -webkit-transform: translate(0, -50%);
-  -moz-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  -o-transform: translate(0, -50%);
-  transform: translate(0, -50%);
 }
 #intro h1 {
   color: #007ACC;
@@ -258,7 +243,21 @@
   color: #999;
   font-weight: 100;
   text-shadow: 1px 1px 1px #fff;
+  transform: none;
 }
 #intro hgroup {
   margin-bottom: 32px;
 }
+
+  .csstransforms #intro > div {
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
