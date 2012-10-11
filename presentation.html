@@ -74,7 +74,7 @@
     <li>Code refactoring.</li>
   </ul>
   <p>Currently supported in <strong>Visual Studio 2012</strong> 
-  and Microsoft's <strong>Monaco</strong> web editor (TypeScript.org playground).</p>
+    and Microsoft's <strong>Monaco</strong> web editor (TypeScript.org playground).</p>
   <p>Also, text editor support for Sublime Text, EMACS, Vim.</p>
 </section>
 
@@ -340,6 +340,7 @@ log.message("hello");</pre></code>
   <ul>
     <li>Requires either Chrome Canary or WebKit nightly.</li>
     <li>Not yet supported by Visual Studio 2012.</li>
+    <li>... but available via <a href="http://visualstudiogallery.msdn.microsoft.com/07d54d12-7133-4e15-becb-6f451ea3bea6">Web Essentials 2012</a> plugin.</a>  
   </ul>
 
   <h3 class="slide">Demo</h3>
@@ -352,18 +353,19 @@ log.message("hello");</pre></code>
     <li>Can be hosted in any ECMAScript 3 compatible runtime.</li>
     <li>Can host the compiler in a web browser by referencing <code>typescript.js</code></li>
   </ul>
-
-  <div class="slide">
-    <h2>Hosting TypeScript Compiler</h2>
-  
-    <p>1. Create an html file with a reference to <code>typescript.js</code> file.</p>
-    
-    <pre><code>&lt;script type="text/javascript" src="typescript.js"&gt;&lt;/script&gt;</pre></code>
-  </div>
 </section>
+
+<section class="slide">
+  <h2>Hosting TypeScript Compiler</h2>
+
+  <h3>1. Create an html file with a reference to <code>typescript.js</code> file.</h3>
+  
+  <pre><code>&lt;script type="text/javascript" src="typescript.js"&gt;&lt;/script&gt;</pre></code>
+</section>
+
 <!-- TODO: Replace  in-place instructions for hosting -->
 <section class="slide">
-  <p>2. Create an output writer</p>
+  <h3>2. Create an output writer</h3>
   <pre><code>var outfile = {
     source: "",
     Write: function (s) {
@@ -377,9 +379,9 @@ log.message("hello");</pre></code>
 </section>
 
 <section class="slide">
-  <p>3. Create an instance of the TypeScript compiler</p>
+  <h3>3. Create an instance of the TypeScript compiler</h3>
   <pre><code>var compiler = new TypeScript.TypeScriptCompiler(outfile);</pre></code>
-  <p>... with compilation error handling.</p>
+  <h3>... with compilation error handling.</h3>
   <pre><code>compiler.parser.errorRecovery = true;
 compiler.setErrorCallback(function (start, len, message, block) {
     console.log('Compilation error: ', message, '\n Code block: ', block, ' Start position: ', start, ' Length: ', len);
@@ -387,17 +389,17 @@ compiler.setErrorCallback(function (start, len, message, block) {
 </section>
 
 <section class="slide">
-  <p>4. Add compilation source.</p>
+  <h3>4. Add compilation source.</h3>
   <pre><code>var src = $('#source').text();
 compiler.addUnit(src, '');</pre></code>
 
-  <p>... and standard lib file.</p>
+  <h3>... and standard lib file.</h3>
   <pre><code>// libfile variable contains packed declaration file lib.d.ts
 compiler.addUnit(libfile, 'lib.d.ts');</pre></code>
 </section>
 
 <section class="slide">
-  <p>5. Compile.</p>
+  <h3>5. Compile.</h3>
   <pre><code>compiler.typeCheck();
 
 compiler.emit(false, function createFile(fileName) {
@@ -438,6 +440,13 @@ console.log('compiled: ' + outfile.source);</pre></code>
     <li>All types are nullable.</li>
     <li>Limited tooling support outside of Visual Studio 2012 or Monaco web editor.</li>    
   </ul>
+</section>
+
+<section class="slide">
+  <blockquote>
+    <p>Static typing does confer some very relevant value.</p>
+    <p>Typically it does so at the cost of flexibility, but this brings a lot of the benefits to JavaScript in an optional way, which is very powerful.</p>    
+  </blockquote>
 </section>
 
 <section class="slide">
