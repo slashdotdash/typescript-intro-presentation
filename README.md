@@ -6,7 +6,7 @@ Created using the wonderful [deck.js](http://imakewebthings.com/deck.js/) for bu
 
 A highlight of the slide deck is that each of the TypeScript code snippets shown are compiled to JavaScript on slide navigation using the TypeScript compiler itself. The presentation goes through how to host the compiler within a html page, or view the source of `presentation.html` and `assets/compiler.js` for further details.
 
-Feel free to copy the source and/or content of these slides for your own use (attribution wold be appreciated).
+Feel free to copy the source and/or content of these slides for your own use (attribution would be appreciated).
 
 ## Presentation Outline
 

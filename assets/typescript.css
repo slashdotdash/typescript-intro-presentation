@@ -245,6 +245,16 @@
   text-shadow: 1px 1px 1px #fff;
   transform: none;
 }
+#intro h3 {
+  font-size: 1em;
+  letter-spacing: 2px;
+  color: #999;
+  font-weight: 100;
+  text-shadow: 1px 1px 1px #fff;
+  transform: none;
+  margin-top: 2em;
+}
+#intro h3 a { font-size: 0.9em; }
 #intro hgroup {
   margin-bottom: 32px;
 }
