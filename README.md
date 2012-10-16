@@ -1,6 +1,6 @@
 # Introduction to TypeScript Presentation
 
-Slides for a tech talk I will be presenting on Friday 12/10/2012 titled "TypeScript: JavaScript for tools".
+Slides for a tech talk I presented on Friday 12/10/2012 titled "TypeScript: JavaScript for tools" as one of the primary design goals for the language is to provided development tooling support.
 
 Created using the wonderful [deck.js](http://imakewebthings.com/deck.js/) for building HTML presentations. Styling has been gratuitously borrowed from [www.typescriptlang.org](http://www.typescriptlang.org/).
 
